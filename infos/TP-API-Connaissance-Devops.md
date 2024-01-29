@@ -110,7 +110,7 @@ GITHUB_ID=???
 GITHUB_SECRET=???
 ```
 
-4. pour accèder à la page de connexion : http://localhost:XXXX/api/auth/signin
+4. Pour accèder à la page de connexion : http://localhost:XXXX/api/auth/signin
 
 ___
 

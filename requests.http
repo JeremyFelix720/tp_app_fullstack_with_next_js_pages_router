@@ -1,5 +1,17 @@
-###
-http://localhost:3000/api/hello
+
+@start_url = http://localhost:3000
 
 ###
-http://localhost:3000/api/date
+GET {{start_url}}/api/hello
+
+###
+GET {{start_url}}/api/hello/jeremy
+
+###
+GET {{start_url}}/api/date
+
+###
+POST {{start_url}}/api/auth/signin
+
+###
+POST {{start_url}}/api/auth/signout
