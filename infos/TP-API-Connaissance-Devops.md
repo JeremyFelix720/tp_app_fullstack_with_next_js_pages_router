@@ -70,6 +70,50 @@ https://next-auth.js.org/configuration/providers/oauth
 https://next-auth.js.org/getting-started/rest-api
 https://next-auth.js.org/getting-started/client
 
+___
+
+Exemple d'authentification avec gitHub :
+
+1. Installez le package `next-auth` :
+```bash
+npm i next-auth
+```
+
+Dans le chemin d'accès "pages/api/auth/[...nextauth].ts", copier-coller ce code :
+```ts
+import NextAuth from "next-auth"
+import GithubProvider from "next-auth/providers/github"
+
+export const authOptions = {
+  // Configure one or more authentication providers
+  providers: [
+    GithubProvider({
+      clientId: process.env.GITHUB_ID!,
+      clientSecret: process.env.GITHUB_SECRET!,
+    }),
+    // ...add more providers here
+  ],
+}
+export default NextAuth(authOptions)
+```
+
+1. Dans mon compte gitHub > profil > "Settings" > "Developer settings" > "OAuth Apps" > "New OAuth App"
+
+2. Remplir le formulaire :
+  - Nom de l'application : Utiliser le camelCase
+  - URL de la page d'accueil : http://localhost:XXXX/
+  - Authorization callback URL : http://localhost:XXXX/api/auth/callback/github
+
+3. Dans le fichier .env, copier-coller (sans guillemet) les 2 infos suivantes ("Client ID" = "GITHUB_ID" et "Client secret" = "GITHUB_SECRET") :
+```
+GITHUB_ID=???
+GITHUB_SECRET=???
+```
+
+4. pour accèder à la page de connexion : http://localhost:XXXX/api/auth/signin
+
+___
+
 Questions :
 Dans le navigateur, sur quelle route puis-je me connecter avec Github ?
 Côté server, comment puis-je récupérer les informations de l'utilisateur connecté ?
