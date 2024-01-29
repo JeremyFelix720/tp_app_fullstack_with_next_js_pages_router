@@ -6,8 +6,15 @@ import { useEffect, useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const getServerSideProps = () => {
-  return { props: { dateStringSSR: new Date().toISOString() } }
+export const getServerSideProps = async () => {
+
+  // Méthode fetch pour récupérer la date du côté back :
+  const res = await fetch(`http://localhost:3000/api/date`)
+  const data = await res.json()
+
+  return { /*props: { dateStringSSR: new Date().toISOString() }*/
+  props: { dateStringSSR: data.date }
+  }
 }
 
 /*
@@ -15,6 +22,8 @@ export const getStaticProps = () => {
   return { props: { dateStringSSG: new Date().toISOString() } }
 }
 */
+
+
 
 interface HomeProps {
   dateStringSSR: string,
